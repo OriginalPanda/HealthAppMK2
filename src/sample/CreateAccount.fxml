@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="456.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateAccount">
+<AnchorPane prefHeight="456.0" prefWidth="600.0" styleClass="background" stylesheets="@Kenko.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateAccount">
     <children>
-        <TextField fx:id="firstName" layoutX="276.0" layoutY="91.0" promptText="First Name" />
-        <TextField fx:id="surname" layoutX="276.0" layoutY="116.0" promptText="Surname" />
-        <TextField fx:id="email" layoutX="276.0" layoutY="141.0" promptText="Email" />
-        <TextField fx:id="age" layoutX="276.0" layoutY="217.0" promptText="Age" />
-        <TextField fx:id="weightGoal" layoutX="276.0" layoutY="242.0" promptText="Weight Goal" />
-        <Label layoutX="190.0" layoutY="14.0" prefHeight="51.0" prefWidth="223.0" text="Create Account">
+        <TextField fx:id="firstName" layoutX="276.0" layoutY="91.0" opacity="0.68" promptText="First Name" />
+        <TextField fx:id="surname" layoutX="276.0" layoutY="116.0" opacity="0.68" promptText="Surname" />
+        <TextField fx:id="email" layoutX="276.0" layoutY="141.0" opacity="0.68" promptText="Email" />
+        <TextField fx:id="age" layoutX="276.0" layoutY="217.0" opacity="0.68" promptText="Age" />
+        <TextField fx:id="weightGoal" layoutX="276.0" layoutY="242.0" opacity="0.68" promptText="Weight Goal" />
+        <Label layoutX="256.0" layoutY="22.0" prefHeight="51.0" prefWidth="138.0" text="Create Account">
             <font>
-                <Font size="32.0" />
+                <Font size="23.0" />
             </font>
         </Label>
         <Button layoutX="227.0" layoutY="385.0" mnemonicParsing="false" onAction="#createAccount2" text="Create Account">
@@ -25,22 +25,22 @@
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>
         </Button>
-      <TextField fx:id="height" layoutX="276.0" layoutY="166.0" promptText="Height (cm)" />
-      <TextField fx:id="weight" layoutX="276.0" layoutY="192.0" promptText="Weight (kg)" />
+      <TextField fx:id="height" layoutX="276.0" layoutY="166.0" opacity="0.68" promptText="Height (cm)" />
+      <TextField fx:id="weight" layoutX="276.0" layoutY="192.0" opacity="0.68" promptText="Weight (kg)" />
       <Label layoutX="179.0" layoutY="95.0" prefHeight="17.0" prefWidth="81.0" text="First name" />
       <Label layoutX="179.0" layoutY="120.0" prefHeight="17.0" prefWidth="81.0" text="Surname" />
       <Label layoutX="179.0" layoutY="145.0" prefHeight="17.0" prefWidth="81.0" text="Email" />
-      <Label layoutX="179.0" layoutY="170.0" prefHeight="17.0" prefWidth="81.0" text="Height (cm)" />
-      <Label layoutX="179.0" layoutY="196.0" prefHeight="17.0" prefWidth="81.0" text="Weight (kg)" />
-      <Label layoutX="179.0" layoutY="221.0" prefHeight="17.0" prefWidth="81.0" text="Age" />
-      <Label layoutX="178.0" layoutY="246.0" prefHeight="17.0" prefWidth="98.0" text="Weight Goal (kg)" />
-      <Label layoutX="181.0" layoutY="293.0" prefHeight="17.0" prefWidth="81.0" text="Distance Goal" />
-      <TextField fx:id="username" layoutX="276.0" layoutY="314.0" promptText="Username" />
-      <PasswordField fx:id="password" layoutX="276.0" layoutY="339.0" promptText="Password" />
+      <Label layoutX="162.0" layoutY="170.0" prefHeight="25.0" prefWidth="98.0" text="Height (cm)" />
+      <Label layoutX="162.0" layoutY="196.0" prefHeight="25.0" prefWidth="98.0" text="Weight (kg)" />
+      <Label layoutX="197.0" layoutY="217.0" prefHeight="25.0" prefWidth="49.0" text="Age" />
+      <Label layoutX="144.0" layoutY="246.0" prefHeight="25.0" prefWidth="132.0" text="Weight Goal (kg)" />
+      <Label layoutX="151.0" layoutY="293.0" prefHeight="25.0" prefWidth="111.0" text="Distance Goal" />
+      <TextField fx:id="username" layoutX="276.0" layoutY="314.0" opacity="0.68" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="276.0" layoutY="339.0" opacity="0.68" promptText="Password" />
       <Label layoutX="179.0" layoutY="318.0" prefHeight="17.0" prefWidth="81.0" text="Username" />
-      <Label layoutX="179.0" layoutY="343.0" prefHeight="17.0" prefWidth="81.0" text="Password" />
-      <TextField fx:id="distanceGoal" layoutX="276.0" layoutY="289.0" promptText="Distance goal" />
-      <TextField fx:id="currDistance" layoutX="276.0" layoutY="267.0" promptText="Current distance" />
-      <Label layoutX="178.0" layoutY="271.0" prefHeight="17.0" prefWidth="98.0" text="Current Distance" />
+      <Label layoutX="179.0" layoutY="343.0" prefHeight="17.0" prefWidth="81.0" stylesheets="@Kenko.css" text="Password" />
+      <TextField fx:id="distanceGoal" layoutX="276.0" layoutY="289.0" opacity="0.68" promptText="Distance goal" />
+      <TextField fx:id="currDistance" layoutX="276.0" layoutY="267.0" opacity="0.68" promptText="Current distance" />
+      <Label layoutX="138.0" layoutY="271.0" prefHeight="25.0" prefWidth="138.0" text="Current Distance" />
     </children>
 </AnchorPane>
