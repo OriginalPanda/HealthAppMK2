@@ -27,6 +27,6 @@
         <Button layoutX="254.0" layoutY="292.0" mnemonicParsing="false" text="Update details" />
         <Button layoutX="18.0" layoutY="353.0" mnemonicParsing="false" text="Log-out" />
         <Label layoutX="545.0" layoutY="97.0" text="Goal" />
-      <Button layoutX="449.0" layoutY="292.0" mnemonicParsing="false" text="Display Graph" />
+      <Button fx:id="graphButton" layoutX="449.0" layoutY="292.0" mnemonicParsing="false" onAction="#displayGraph" text="Display Graph" />
     </children>
 </AnchorPane>

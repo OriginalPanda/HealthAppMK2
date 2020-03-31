@@ -1,29 +1,18 @@
 package sample;
 
-import java.awt.*;
 import java.io.*;
-
 import javafx.fxml.FXML;
 import java.io.FileWriter;
-
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import static javafx.fxml.FXMLLoader.*;
 
-
 public class CreateAccount{
-
-
     //Taking out age
     @FXML
     private TextField name,surname,email,username, password,age;
-
-
-
 
     public void createAccount2() throws IOException
     {
@@ -84,14 +73,8 @@ public class CreateAccount{
             bwr3.close();
 
             openMenu();
-
         }
-
     }
-
-
-
-
 
     public void openMenu() throws IOException {
         Parent part = load(getClass().getResource("menu.fxml"));
@@ -211,7 +194,4 @@ public class CreateAccount{
         }
         return true;
     }
-
-
-
 }

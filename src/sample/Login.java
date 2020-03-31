@@ -1,21 +1,20 @@
 package sample;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
 // Represents behind the scenes logic and all background code.
-public class Login {
-
+public class Login
+{
     public Button loginButton;
 
     @FXML
@@ -24,7 +23,6 @@ public class Login {
 
     public void login() throws IOException
     {
-
         String username_text = username.getText();
         String password_text = password.getText();
         if (validAccount(username_text, password_text))
@@ -32,27 +30,40 @@ public class Login {
             Parent part = FXMLLoader.load(getClass().getResource("menu.fxml"));
             Stage newAccStage = new Stage();
             Scene scene = new Scene(part);
-            newAccStage.setScene(scene);
             newAccStage.setTitle("Kenko");
+            newAccStage.setScene(scene);
             newAccStage.show();
         }
 
         else{
-            System.out.println("Invalid login");
+            invalidLoginAlert();
         }
     }
 
-
+    public void invalidLoginAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Kenko");
+        alert.setHeaderText("Invalid login.");
+        alert.setContentText("The login details you have entered do not currently exist. Please try again or create" +
+                "a new account.");
+        alert.showAndWait();
+    }
 
 
     // Uses username txt file to check for a username.
+
+    /**
+     *
+     * @param checkUsername
+     * @param checkPassword
+     * @return
+     */
     public boolean validAccount(String checkUsername, String checkPassword)
     {
         BufferedReader bufferedReader = null;
         String fileName =  "accounts.csv";
         String line = "";
         String csvSplitBy=",";
-
         try
         {
             bufferedReader = new BufferedReader(new FileReader(fileName));
@@ -61,15 +72,11 @@ public class Login {
                 String [] name = line.split(csvSplitBy);
                 String username = name[3];
                 String password = name[4];
-                //System.out.println("R user " + username +" chk U "+ checkUsername);
-                //System.out.println((checkUsername.equals(username)));
-                //System.out.println("R pw "+ password + " chk P "+checkPassword);
                 if (checkUsername.equals(username))
                 {
-                    System.out.println("user exists");
                     if (checkPassword.equals(password))
                     {
-                        System.out.println("success");
+                        saveCurrentUser(username);
                         return true;
                     }
                 }
@@ -83,32 +90,28 @@ public class Login {
         return false;
     }
 
+    /**
+     * Method to write to a CSV the username of the username of the current user who is logged in
+     * @param username
+     * @throws IOException
+     */
+    public void saveCurrentUser(String username) throws IOException
+    {
+        FileWriter fileWriter = new FileWriter("currentUser.csv");
+        BufferedWriter bwr = new BufferedWriter(fileWriter);
+        bwr.write(username);
+        bwr.flush();
+        bwr.close();
+    }
 
 
     public void createAccount() throws IOException
     {
-        Parent part = FXMLLoader.load(getClass().getResource("createAcc.fxml"));
+        Parent part = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);
-
         newAccStage.setScene(scene);
         newAccStage.setTitle("Kenko");
         newAccStage.show();
-
     }
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-

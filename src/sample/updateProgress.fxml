@@ -30,20 +30,20 @@
                 <Font name="Arial Bold" size="48.0" />
             </font>
         </Label>
-        <Button layoutX="338.0" layoutY="420.0" mnemonicParsing="false" text="Confirm" />
+        <Button layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#update" text="Confirm" />
         <Label layoutX="338.0" layoutY="14.0" text="Kenko">
             <font>
                 <Font name="System Bold" size="27.0" />
             </font>
         </Label>
-        <TextField layoutX="319.0" layoutY="147.0" prefHeight="39.0" prefWidth="239.0" />
-        <TextField layoutX="319.0" layoutY="223.0" prefHeight="39.0" prefWidth="239.0" />
+        <TextField fx:id="w2" layoutX="319.0" layoutY="147.0" prefHeight="39.0" prefWidth="239.0" />
+        <TextField fx:id="d2" layoutX="319.0" layoutY="223.0" prefHeight="39.0" prefWidth="239.0" />
         <Label layoutX="172.0" layoutY="294.0" prefHeight="39.0" prefWidth="94.0" text="Height">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <TextField layoutX="319.0" layoutY="294.0" prefHeight="39.0" prefWidth="239.0">
+        <TextField fx:id="h2" layoutX="319.0" layoutY="294.0" prefHeight="39.0" prefWidth="239.0">
             <contextMenu>
                 <ContextMenu>
                     <items>

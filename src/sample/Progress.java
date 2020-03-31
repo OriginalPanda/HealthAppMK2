@@ -1,21 +1,24 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.scene.chart.NumberAxis;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import static javafx.application.Application.launch;
 
-public class Progress extends Application
+public class Progress
 {
-    public void start(Stage stage) {
+    //@FXML
+    //private Button graphButton;
+
+    public void displayGraph()
+    {
+        Stage stage = new Stage();
         stage.setTitle("Kenko");
 
         //defining the axes
@@ -42,16 +45,16 @@ public class Progress extends Application
             bufferedReader = new BufferedReader(new FileReader(fileName));
             while ((line = bufferedReader.readLine()) != null)
             {
-                System.out.println("b");
                 String [] split = line.split(csvSplitBy);
                 String username = split[0];
-                if (username.equals("wdwwdwd")) // Null until we work out how to solve
+                if (username.equals(currentUser())) // Null until we work out how to solve
                 {
-                    System.out.println("a");
+                    int j =0;
                     for (int i =1; i < split.length; i++)
                     {
                         int weight = Integer.parseInt(split[i]);
-                        series.getData().add(new XYChart.Data(i, weight));
+                        series.getData().add(new XYChart.Data(j, weight));
+                        j++;
                     }
                     Scene scene  = new Scene(lineChart,800,600);
                     lineChart.getData().add(series);
@@ -65,17 +68,27 @@ public class Progress extends Application
         {
             System.out.println("Error: " + e);
         }
-
-
-        Scene scene  = new Scene(lineChart,800,600);
         lineChart.getData().add(series);
-
-        stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
-        //launch(args);
+    public String currentUser()
+    {
+        BufferedReader bufferedReader = null;
+        String fileName =  "currentUser.csv";
+        String line = "";
+        try
+        {
+            bufferedReader = new BufferedReader(new FileReader(fileName));
+            while ((line = bufferedReader.readLine()) != null)
+            {
+                return line;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error: " + e);
+        }
+        return null;
     }
-
 }
