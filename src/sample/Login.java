@@ -13,29 +13,24 @@ import javafx.stage.Stage;
 
 
 // Represents behind the scenes logic and all background code.
-public class Login
-{
+public class Login {
     public Button loginButton;
 
     @FXML
     private TextField username, password;
 
 
-    public void login() throws IOException
-    {
+    public void login() throws IOException {
         String username_text = username.getText();
         String password_text = password.getText();
-        if (validAccount(username_text, password_text))
-        {
+        if (validAccount(username_text, password_text)) {
             Parent part = FXMLLoader.load(getClass().getResource("menu.fxml"));
             Stage newAccStage = new Stage();
             Scene scene = new Scene(part);
             newAccStage.setTitle("Kenko");
             newAccStage.setScene(scene);
             newAccStage.show();
-        }
-
-        else{
+        } else {
             invalidLoginAlert();
         }
     }
@@ -53,38 +48,30 @@ public class Login
     // Uses username txt file to check for a username.
 
     /**
-     *
      * @param checkUsername
      * @param checkPassword
      * @return
      */
-    public boolean validAccount(String checkUsername, String checkPassword)
-    {
+    public boolean validAccount(String checkUsername, String checkPassword) {
         BufferedReader bufferedReader = null;
-        String fileName =  "accounts.csv";
+        String fileName = "accounts.csv";
         String line = "";
-        String csvSplitBy=",";
-        try
-        {
+        String csvSplitBy = ",";
+        try {
             bufferedReader = new BufferedReader(new FileReader(fileName));
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                String [] name = line.split(csvSplitBy);
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] name = line.split(csvSplitBy);
                 String username = name[3];
                 String password = name[4];
-                if (checkUsername.equals(username))
-                {
-                    if (checkPassword.equals(password))
-                    {
+                if (checkUsername.equals(username)) {
+                    if (checkPassword.equals(password)) {
                         saveCurrentUser(username);
                         return true;
                     }
                 }
             }
             return false;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
         return false;
@@ -92,11 +79,11 @@ public class Login
 
     /**
      * Method to write to a CSV the username of the username of the current user who is logged in
+     *
      * @param username
      * @throws IOException
      */
-    public void saveCurrentUser(String username) throws IOException
-    {
+    public void saveCurrentUser(String username) throws IOException {
         FileWriter fileWriter = new FileWriter("currentUser.csv");
         BufferedWriter bwr = new BufferedWriter(fileWriter);
         bwr.write(username);
@@ -105,8 +92,7 @@ public class Login
     }
 
 
-    public void createAccount() throws IOException
-    {
+    public void createAccount() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);

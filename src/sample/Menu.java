@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Menu {
 
-    public void openProgress()throws IOException {
+    public void openProgress() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("progress.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);
@@ -19,8 +19,9 @@ public class Menu {
         newAccStage.setTitle("Kenko");
         newAccStage.show();
     }
-    public void openUpdateInfo()throws IOException {
-        Parent part = FXMLLoader.load(getClass().getResource("updateInfo.fxml"));
+
+    public void openSetGoals() throws IOException {
+        Parent part = FXMLLoader.load(getClass().getResource("setGoals.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);
         newAccStage.setScene(scene);
@@ -28,7 +29,7 @@ public class Menu {
         newAccStage.show();
     }
 
-    public void openWorkout()throws IOException {
+    public void openWorkout() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("workout.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);
@@ -37,7 +38,7 @@ public class Menu {
         newAccStage.show();
     }
 
-    public void openUpdateProgress()throws IOException {
+    public void openUpdateProgress() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("updateProgress.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);

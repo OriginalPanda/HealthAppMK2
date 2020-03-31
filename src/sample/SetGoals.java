@@ -1,55 +1,36 @@
 package sample;
 
 import javafx.fxml.FXML;
-
-import java.awt.*;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import javafx.fxml.FXML;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import java.awt.*;
+import java.io.*;
 
-public class UpdateProgress {
+public class SetGoals {
+    public Button confirm;
 
     @FXML
-    private TextField w2, d2;
+    private TextField weightGoal, distanceGoal;
 
+    public void confirm() throws IOException {
+        String weightGoalText = weightGoal.getText();
+        String distanceGoalText = distanceGoal.getText();
+        if (!weightGoalText.matches("[0-9]{1,}")) {
+            invalidDataType("Ideal weight");
+        } else if (!distanceGoalText.matches("[0-9]{1,}")) {
+            invalidDataType("Distance goal");
+        } else {
+            // Write to the weightGaol file.
+            updateWeightGoal(weightGoalText);
 
-    public void invalidDataType(String data) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Kenko");
-        alert.setHeaderText("Invalid " + data);
-        alert.setContentText("Please try again"+ "\n" + "If you don't have a progress for this please enter a 0.");
-        alert.showAndWait();
-    }
-
-    public void update() throws IOException {
-        String weightText = w2.getText();
-        String distanceText = d2.getText();
-        if (!weightText.matches("[0-9]{1,}")) {
-            invalidDataType("Weight Goal");
-        }
-        else  if(!distanceText.matches("[0-9]{1,}")) {
-            invalidDataType("Distance Goal");
-        }
-        else{
-            updateWeights(weightText);
-            updateDistance(distanceText);
+            // Write to the distanceGoal file.
+            updateDistanceGoal(distanceGoalText);
         }
     }
 
-
-
-    /**
-     * A method to update the ...
-     *
-     * @param weight
-     */
-    public void updateWeights(String weight) throws IOException {
+    public void updateWeightGoal(String weight) throws IOException {
         BufferedReader bufferedReader = null;
-        String fileName = "weights.csv";
+        String fileName = "weightGoal.csv";
         String line = "";
         String csvSplitBy = ",";
         String oldText = "";
@@ -70,7 +51,7 @@ public class UpdateProgress {
                 }
             }
             // Write the new data back to the csv file
-            FileWriter writer = new FileWriter("weights.csv");
+            FileWriter writer = new FileWriter("weightGoal.csv");
             writer.write(newText);
             writer.close();
         } catch (Exception e) {
@@ -78,9 +59,10 @@ public class UpdateProgress {
         }
     }
 
-    public void updateDistance(String distance) {
+
+    public void updateDistanceGoal(String distance) throws IOException {
         BufferedReader bufferedReader = null;
-        String fileName = "distances.csv";
+        String fileName = "distanceGoal.csv";
         String line = "";
         String csvSplitBy = ",";
         String oldText = "";
@@ -101,12 +83,20 @@ public class UpdateProgress {
                 }
             }
             // Write the new data back to the csv file
-            FileWriter writer = new FileWriter("distances.csv");
+            FileWriter writer = new FileWriter("distanceGoal.csv");
             writer.write(newText);
             writer.close();
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
+    }
+
+    public void invalidDataType(String data) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Kenko");
+        alert.setHeaderText("Invalid " + data);
+        alert.setContentText("Please try again" + "\n" + "If you don't have a secondary goal please enter a 0.");
+        alert.showAndWait();
     }
 
     public String currentUser() {

@@ -12,23 +12,17 @@ public class Main extends Application {
     Scene login, createAccount;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
         Parent loginScene = FXMLLoader.load(getClass().getResource("login.fxml"));
         login = new Scene(loginScene, 600, 275);
-
+        window.setTitle("Kenko");
 
 
         window.setScene(login);
         window.show();
     }
-
-
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);
