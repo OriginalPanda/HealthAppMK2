@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@Kenko.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Progress">
+    <children>
+        <Pane layoutX="173.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <ProgressBar fx:id="distanceProgressBar" layoutX="-142.0" layoutY="100.0" opacity="0.61" prefHeight="58.0" prefWidth="541.0" progress="0.0" />
+            <Label layoutX="106.0" layoutY="73.0" text="Distance" />
+            <Label layoutX="109.0" layoutY="169.0" text="Weight" />
+                <Label layoutX="45.0" layoutY="27.0" text="You're doing GREAT warrior">
+                    <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                    </font>
+                </Label>
+              <Label layoutX="107.0" layoutY="-10.0" text="Kenko">
+                  <font>
+                      <Font size="31.0" />
+                  </font>
+              </Label>
+            </children>
+        </Pane>
+      <Button fx:id="graphButton" layoutX="469.0" layoutY="292.0" mnemonicParsing="false" onAction="#displayWeightGraph" text="Weight Graph" />
+      <Button fx:id="updateButton" layoutX="238.0" layoutY="292.0" mnemonicParsing="false" onAction="#updateProgressBars" text="Update Progress Bars" />
+      <ProgressBar fx:id="weightProgressBar" layoutX="30.0" layoutY="225.0" opacity="0.61" prefHeight="58.0" prefWidth="541.0" progress="0.0" />
+      <Button fx:id="graphButtonDistance" layoutX="469.0" layoutY="188.0" mnemonicParsing="false" onAction="#displayGraphDistance" prefHeight="25.0" prefWidth="102.0" text="Distance graph" />
+      <Button fx:id="BMI" layoutX="249.0" layoutY="348.0" mnemonicParsing="false" onAction="#displayBMI" text="Calculate my BMI" />
+    </children>
+</AnchorPane>

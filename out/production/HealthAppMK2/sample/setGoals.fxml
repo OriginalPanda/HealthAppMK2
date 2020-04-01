@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="382.0" prefWidth="757.0" styleClass="background" stylesheets="@Kenko.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SetGoals">
+    <children>
+        <Pane layoutX="135.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" />
+        <Label layoutX="358.0" layoutY="26.0" text="Kenko">
+            <font>
+                <Font name="Arial Bold" size="48.0" />
+            </font>
+        </Label>
+        <Button layoutX="350.0" layoutY="320.0" mnemonicParsing="false" onAction="#setGoals" text="Confirm" />
+        <Label layoutX="500.0" layoutY="99.0">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="336.0" layoutY="110.0" text="Weight Goal">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="weightGoal" layoutX="304.0" layoutY="134.0" opacity="0.59" />
+        <Label layoutX="331.0" layoutY="207.0" text="Distance Goal">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="distanceGoal" layoutX="305.0" layoutY="228.0" opacity="0.59" />
+      <Label layoutX="360.0" layoutY="65.0" text="Goals">
+         <font>
+            <Font name="Arial Bold" size="48.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
