@@ -20,7 +20,7 @@
                 <Font size="23.0" />
             </font>
         </Label>
-        <Button layoutX="227.0" layoutY="385.0" mnemonicParsing="false" onAction="#createAccount2" text="Create Account">
+        <Button layoutX="227.0" layoutY="385.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account">
             <cursor>
                 <Cursor fx:constant="CROSSHAIR" />
             </cursor>

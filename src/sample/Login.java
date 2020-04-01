@@ -92,7 +92,7 @@ public class Login {
     }
 
 
-    public void createAccount() throws IOException {
+    public void openCreateAccount() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
         Stage newAccStage = new Stage();
         Scene scene = new Scene(part);

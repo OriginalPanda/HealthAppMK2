@@ -19,7 +19,7 @@ public class CreateAccount {
     private TextField firstName, surname, email, username,
             password, age, weight, height, weightGoal, distanceGoal, currDistance;
 
-    public void createAccount2() throws IOException {
+    public void createAccount() throws IOException {
         // Taking the user input from the application and storing it
         String firstName_text = firstName.getText();
         String surname_text = surname.getText();
@@ -119,7 +119,12 @@ public class CreateAccount {
             bwr7.flush();
             bwr7.close();
 
-            openMenu();
+            // Open successfully created popup
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Kenko");
+            alert.setHeaderText("WELCOME TO THE KENKO FAMILY!!! :)");
+            alert.setContentText("Successfully created an account. Please go back and log in with your account.");
+            alert.showAndWait();
         }
     }
 

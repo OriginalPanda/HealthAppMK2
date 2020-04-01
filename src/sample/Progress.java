@@ -329,8 +329,26 @@ public class Progress {
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Kenko");
-        alert.setHeaderText("Your BMI is: " + calculateBMI());
-        alert.setContentText("below 18.5 – you're in the underweight range.\n" +
+        String bmiCat = "";
+        double bmiVal = calculateBMI();
+        if (bmiVal < 18.5)
+        {
+            bmiCat = "Underweight";
+        }
+        else if (18.5 < bmiVal && bmiVal < 24.9)
+        {
+            bmiCat = "healthy";
+        }
+        else if (25 < bmiVal && bmiVal < 29.9)
+        {
+            bmiCat = "overweight";
+        }
+        else{
+            bmiCat = "obese";
+        }
+        alert.setHeaderText("Your BMI is: " + bmiVal + " this means that you are: " + bmiCat);
+        alert.setContentText("Here are the BMI ranges: \n" +
+                "below 18.5 – you're in the underweight range.\n" +
                 "between 18.5 and 24.9 – you're in the healthy weight range.\n" +
                 "between 25 and 29.9 – you're in the overweight range.\n" +
                 "between 30 and 39.9 – you're in the obese range.");
