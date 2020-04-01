@@ -12,7 +12,11 @@ public class SetGoals {
     @FXML
     private TextField weightGoal, distanceGoal;
 
-    public void confirm() throws IOException {
+    /**
+     * Method to take the users input and update the CSV files and give the user confirmation
+     * @throws IOException
+     */
+    public void setGoals() throws IOException {
         String weightGoalText = weightGoal.getText();
         String distanceGoalText = distanceGoal.getText();
         if (!weightGoalText.matches("[0-9]{1,}")) {
@@ -20,14 +24,17 @@ public class SetGoals {
         } else if (!distanceGoalText.matches("[0-9]{1,}")) {
             invalidDataType("Distance goal");
         } else {
-            // Write to the weightGaol file.
             updateWeightGoal(weightGoalText);
-
-            // Write to the distanceGoal file.
             updateDistanceGoal(distanceGoalText);
+            confirmationMessage();
         }
     }
 
+    /**
+     * Method to update the CSV with the user's new weight goal
+     * @param weight - new weight goal to update with
+     * @throws IOException
+     */
     public void updateWeightGoal(String weight) throws IOException {
         BufferedReader bufferedReader = null;
         String fileName = "weightGoal.csv";
@@ -59,7 +66,11 @@ public class SetGoals {
         }
     }
 
-
+    /**
+     * Method to update the CSV with the user's new distance goal
+     * @param distance - new distance goal to update with
+     * @throws IOException
+     */
     public void updateDistanceGoal(String distance) throws IOException {
         BufferedReader bufferedReader = null;
         String fileName = "distanceGoal.csv";
@@ -91,6 +102,9 @@ public class SetGoals {
         }
     }
 
+    /**
+     * Method to alert the user that their data is incorrect.
+     */
     public void invalidDataType(String data) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -99,6 +113,21 @@ public class SetGoals {
         alert.showAndWait();
     }
 
+    /**
+     * Method to confirm to the user that their data has been updated.
+     */
+    public void confirmationMessage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Kenko");
+        alert.setHeaderText("Successfully updated");
+        alert.setContentText("Your new goal had been set!");
+        alert.showAndWait();
+    }
+
+    /**
+     * Method to retrieve the current user's username
+     * @return username
+     */
     public String currentUser() {
         BufferedReader bufferedReader = null;
         String fileName = "currentUser.csv";

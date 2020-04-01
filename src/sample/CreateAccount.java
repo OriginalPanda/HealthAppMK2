@@ -1,24 +1,20 @@
 package sample;
 
 import java.io.*;
-
 import javafx.fxml.FXML;
-
 import java.io.FileWriter;
-
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import static javafx.fxml.FXMLLoader.*;
 
 public class CreateAccount {
     @FXML
     private TextField firstName, surname, email, username,
             password, age, weight, height, weightGoal, distanceGoal, currDistance;
 
+    /**
+     * Method to take the new users details and create a new account if the details are all valid.
+     * @throws IOException
+     */
     public void createAccount() throws IOException {
         // Taking the user input from the application and storing it
         String firstName_text = firstName.getText();
@@ -54,7 +50,6 @@ public class CreateAccount {
         }
         //If the data passes the validation checks it is written to files.
         else {
-            // Need to initialise the users here
 
             // The files are split up so that the individual files can be searched to see if there
             // is already a username or email in the separate txt files.
@@ -81,7 +76,7 @@ public class CreateAccount {
             BufferedWriter bwr3 = new BufferedWriter(fileWriter3);
             bwr3.write(firstName_text + "," + surname_text + "," + email_text + "," + username_text + ","
                     + password_text + "," + weight_text + "," + height_text + ","
-                    + age_text + weightGoal_text + distanceGoal_text);
+                    + age_text+ "," + weightGoal_text + "," + distanceGoal_text);
             bwr3.write("\n");
             bwr3.flush();
             bwr3.close();
@@ -112,9 +107,9 @@ public class CreateAccount {
 
 
             // Write to the distance file
-            FileWriter fileWriter7 = new FileWriter("distance.csv", true);
+            FileWriter fileWriter7 = new FileWriter("distances.csv", true);
             BufferedWriter bwr7 = new BufferedWriter(fileWriter7);
-            bwr7.write(username_text + "," + weightGoal_text);
+            bwr7.write(username_text + "," + currDistance_text);
             bwr7.write("\n");
             bwr7.flush();
             bwr7.close();
@@ -128,17 +123,11 @@ public class CreateAccount {
         }
     }
 
-    public void openMenu() throws IOException {
-        Parent part = load(getClass().getResource("menu.fxml"));
-        Stage newAccStage = new Stage();
-        Scene scene = new Scene(part);
-
-        newAccStage.setScene(scene);
-        newAccStage.setTitle("Kenko");
-        newAccStage.show();
-    }
-
-    // Uses username txt file to check for a username.
+    /**
+     * Method to check the entered username against the usernames currently stored in the database.
+     * @param checkUsername - entered username
+     * @return bool
+     */
     public boolean usernameExists(String checkUsername) {
         BufferedReader bufferedReader = null;
         String fileName = "usernames.csv";
@@ -162,8 +151,14 @@ public class CreateAccount {
         return false;
     }
 
-    // Method that checks that the username is longer than 3 characters
-    // and can only contain a-z, A-Z, 0-9, points, dashes and underscores.
+
+    /**
+     * Method that checks that the username is longer than 3 characters
+     * and can only contain a-z, A-Z, 0-9, points, dashes and underscores.
+     *
+     * @param username - entered username
+     * @return bool
+     */
     public boolean validUsername(String username) {
         if (usernameExists(username)) {
             return false;
@@ -175,7 +170,13 @@ public class CreateAccount {
     }
 
 
-    // Method to check for the email in the email folder.
+
+    /**
+     * Method to check for the email exists in the email folder.
+     *
+     * @param checkEmail - entered user email
+     * @return bool
+     */
     public boolean emailExists(String checkEmail) {
         BufferedReader bufferedReader = null;
         String fileName = "emails.csv";
@@ -198,8 +199,13 @@ public class CreateAccount {
         return false;
     }
 
-    // Method to check the email is valid (it doesn't already exist and it fulfills the regex)
-    // returns true if valid, false if not.
+
+    /**
+     * Method to check the email is valid (it doesn't already exist and it fulfills the regex)
+     *
+     * @param checkEmail - entered email
+     * @return bool
+     */
     public boolean validEmail(String checkEmail) {
         if (emailExists(checkEmail)) {
             return false;
@@ -211,8 +217,14 @@ public class CreateAccount {
         return true;
     }
 
-    // Method that checks that the password is between 8-20 chars, must contain one uppercase,
-    // one lowercase and one special char
+
+    /**
+     * Method that checks that the password is between 8-20 chars, must contain one uppercase,
+     * one lowercase and one special char
+     *
+     * @param password - entered password
+     * @return bool
+     */
     public boolean validPassword(String password) {
         if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[#$^+=!*()@%&]).{8,20}$")) {
             return false;
@@ -220,6 +232,9 @@ public class CreateAccount {
         return true;
     }
 
+    /**
+     * A method to give the user an alert if their username is incorrect.
+     */
     public void invalidUsernameError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -230,6 +245,10 @@ public class CreateAccount {
         alert.showAndWait();
     }
 
+
+    /**
+     * A method to give the user an alert if their password is incorrect.
+     */
     public void invalidPasswordError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -239,6 +258,9 @@ public class CreateAccount {
     }
 
 
+    /**
+     * A method to give the user an alert if their email is incorrect.
+     */
     public void invalidEmailError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -247,6 +269,10 @@ public class CreateAccount {
         alert.showAndWait();
     }
 
+
+    /**
+     * A method to give the user an alert if their data is of the incorrect format.
+     */
     public void invalidDataType(String data) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");

@@ -1,13 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
-
-import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import javafx.fxml.FXML;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
@@ -16,7 +10,10 @@ public class UpdateProgress {
     @FXML
     private TextField w2, d2;
 
-
+    /**
+     * Error message for if the user enters the wrong data type
+     * @param data - the field that is incorrect
+     */
     public void invalidDataType(String data) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -25,6 +22,10 @@ public class UpdateProgress {
         alert.showAndWait();
     }
 
+    /**
+     * A method to update the user's progress if the data all formatted correctly
+     * @throws IOException
+     */
     public void update() throws IOException {
         String weightText = w2.getText();
         String distanceText = d2.getText();
@@ -37,15 +38,25 @@ public class UpdateProgress {
         else{
             updateWeights(weightText);
             updateDistance(distanceText);
+            confirmationMessage();
         }
     }
 
+    /**
+     * Method to confirm to the user that their data has been updated.
+     */
+    public void confirmationMessage() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Kenko");
+        alert.setHeaderText("Successfully updated");
+        alert.setContentText("Your progress has been updated!" +"\n"+ "Keep up the good work warrior.");
+        alert.showAndWait();
+    }
 
 
     /**
-     * A method to update the ...
-     *
-     * @param weight
+     * A method to update the user's weight and save the data
+     * @param weight - the user weight to update the file with
      */
     public void updateWeights(String weight) throws IOException {
         BufferedReader bufferedReader = null;
@@ -78,6 +89,10 @@ public class UpdateProgress {
         }
     }
 
+    /**
+     * A method to update the user's distance and save the data
+     * @param distance - the user distance to update the file with
+     */
     public void updateDistance(String distance) {
         BufferedReader bufferedReader = null;
         String fileName = "distances.csv";
@@ -109,6 +124,10 @@ public class UpdateProgress {
         }
     }
 
+    /**
+     * A method to find out which user is currently logged into the system.
+     * @return username - of the logged in user
+     */
     public String currentUser() {
         BufferedReader bufferedReader = null;
         String fileName = "currentUser.csv";

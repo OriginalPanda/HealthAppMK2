@@ -15,7 +15,7 @@
                 <Font name="Arial Bold" size="48.0" />
             </font>
         </Label>
-        <Button layoutX="350.0" layoutY="320.0" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
+        <Button layoutX="350.0" layoutY="320.0" mnemonicParsing="false" onAction="#setGoals" text="Confirm" />
         <Label layoutX="500.0" layoutY="99.0">
             <font>
                 <Font name="System Bold" size="18.0" />

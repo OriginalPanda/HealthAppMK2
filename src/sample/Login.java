@@ -1,7 +1,6 @@
 package sample;
 
 import java.io.*;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,14 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-// Represents behind the scenes logic and all background code.
 public class Login {
     public Button loginButton;
 
     @FXML
     private TextField username, password;
 
-
+    /**
+     * A method to change to the menu screen if a valid login is given or give an alert that the login details are
+     * incorrect
+     * @throws IOException
+     */
     public void login() throws IOException {
         String username_text = username.getText();
         String password_text = password.getText();
@@ -35,6 +37,9 @@ public class Login {
         }
     }
 
+    /**
+     * A method to give the user an alert if their login is incorrect.
+     */
     public void invalidLoginAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Kenko");
@@ -44,13 +49,11 @@ public class Login {
         alert.showAndWait();
     }
 
-
-    // Uses username txt file to check for a username.
-
     /**
-     * @param checkUsername
-     * @param checkPassword
-     * @return
+     * A method to check that the user's login details are correct
+     * @param checkUsername - the entered username
+     * @param checkPassword - the entered password
+     * @return bool - true if valid, false is invalid.
      */
     public boolean validAccount(String checkUsername, String checkPassword) {
         BufferedReader bufferedReader = null;
@@ -91,7 +94,10 @@ public class Login {
         bwr.close();
     }
 
-
+    /**
+     * Method to open the screen for the user to create a new account.
+     * @throws IOException
+     */
     public void openCreateAccount() throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
         Stage newAccStage = new Stage();

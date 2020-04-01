@@ -8,13 +8,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-/**
- * Controller class containing various methods to update views of the Progress page
- */
 
 public class Progress {
 
@@ -52,7 +47,7 @@ public class Progress {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(csvSplitBy);
                 String username = split[0];
-                if (username.equals(currentUser())) // Null until we work out how to solve
+                if (username.equals(currentUser()))
                 {
                     int j = 0;
                     for (int i = 1; i < split.length; i++) {
@@ -73,7 +68,6 @@ public class Progress {
         lineChart.getData().add(series);
         stage.show();
     }
-
 
     /**
      * Method to display the distance graph (tracking the user's distance progress)
@@ -107,7 +101,7 @@ public class Progress {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(csvSplitBy);
                 String username = split[0];
-                if (username.equals(currentUser())) // Null until we work out how to solve
+                if (username.equals(currentUser()))
                 {
                     int j = 0;
                     for (int i = 1; i < split.length; i++) {
@@ -179,7 +173,7 @@ public class Progress {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        System.out.println("curr" + currWeight);
+        System.out.println("weight: "+currWeight);
         return currWeight;
     }
 
@@ -206,7 +200,6 @@ public class Progress {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        System.out.println(goalWeight);
         return goalWeight;
     }
 
@@ -215,10 +208,15 @@ public class Progress {
      * @return weightProgressValue (as a decimal)
      */
     public double weightProgressValue() {
-        double weightValue = 0;
-        weightValue = (getGoalWeight() / getCurrWeight());
-        System.out.println(weightValue);
-        return weightValue;
+        double goalWeight = getGoalWeight();
+        double currentWeight = getCurrWeight();
+        if (currentWeight > goalWeight)
+        {
+            return (goalWeight / currentWeight);
+        }
+        else {
+            return (currentWeight / goalWeight);
+        }
     }
 
 
@@ -228,8 +226,6 @@ public class Progress {
      */
     public double getCurrDistance() {
         double currDistance = 0;
-        //populating the series with data
-        // Reading from CSV and populating the series with the data.
         BufferedReader bufferedReader = null;
         String fileName = "distances.csv";
         String line = "";
@@ -239,7 +235,7 @@ public class Progress {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(csvSplitBy);
                 String username = split[0];
-                if (username.equals(currentUser())) // Null until we work out how to solve
+                if (username.equals(currentUser()))
                 {
                     currDistance = Integer.parseInt(split[split.length - 1]);
                 }
@@ -256,8 +252,6 @@ public class Progress {
      */
     public double getGoalDistance() {
         double goalDistance = 0;
-        //populating the series with data
-        // Reading from CSV and populating the series with the data.
         BufferedReader bufferedReader = null;
         String fileName = "distanceGoal.csv";
         String line = "";
@@ -267,7 +261,7 @@ public class Progress {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(csvSplitBy);
                 String username = split[0];
-                if (username.equals(currentUser())) // Null until we work out how to solve
+                if (username.equals(currentUser()))
                 {
                     goalDistance = Integer.parseInt(split[(split.length - 1)]);
                 }
@@ -283,8 +277,7 @@ public class Progress {
      * @return distanceProgressValue (as a decimal)
      */
     public double distanceProgressValue() {
-        double weightValue = (getCurrDistance() / getGoalDistance());
-        return weightValue;
+        return (getCurrDistance() / getGoalDistance());
     }
 
     /**
@@ -293,8 +286,6 @@ public class Progress {
      */
     public double getHeight() {
         double height = 0;
-        //populating the series with data
-        // Reading from CSV and populating the series with the data.
         BufferedReader bufferedReader = null;
         String fileName = "accounts.csv";
         String line = "";
@@ -303,7 +294,7 @@ public class Progress {
             bufferedReader = new BufferedReader(new FileReader(fileName));
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(csvSplitBy);
-                String username = split[0];
+                String username = split[3];
                 if (username.equals(currentUser()))
                 {
                     height = Integer.parseInt(split[(6)]);
@@ -312,19 +303,21 @@ public class Progress {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        System.out.println(height);
         return height;
     }
-
 
     /**
      * Method to calculate the BMI of the logged in user from their height and weight
      * @return BMI value
      */
     public double calculateBMI(){
-        return (getCurrWeight()/(getHeight()*getHeight()));
+        return ((getCurrWeight() /(getHeight()*getHeight()))/0.0001);
     }
 
+    /**
+     * A method to display an alert to the user showing their BMI value along with the ranges for which category
+     * they fall in and the ranges.
+     */
     public void displayBMI()
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
